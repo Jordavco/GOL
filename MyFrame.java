@@ -14,6 +14,7 @@ public class MyFrame extends JFrame{
     Color ALIVE = Color.YELLOW;
     Color DEAD =Color.BLACK;
     int length = 10;
+    int size= length;
     JButton[] cells = new JButton[length*length+1];
     boolean[] liveCells = new boolean[length*length+1];
     MyFrame(){
@@ -80,6 +81,17 @@ public class MyFrame extends JFrame{
             if(liveCells[cellIndex-length]){
                 count++;
             }
+            if(cellIndex%length != 1){
+                if(liveCells[cellIndex-length-1]){
+                    count++;
+                }
+            }
+            if(cellIndex%length != 0){
+                if(liveCells[cellIndex-length+1]){
+                    count++;
+                }
+        }
+            
         }
         if(cellIndex%length != 1){
             if(liveCells[cellIndex-1]){
@@ -92,9 +104,19 @@ public class MyFrame extends JFrame{
             }
         }
         if(cellIndex<(length*length)-length){
-            if(cells[cellIndex+length].getBackground().equals(ALIVE)){
+            if(liveCells[cellIndex+length]){
                 count++;
             }
+            if(cellIndex%length != 1){
+                if(liveCells[cellIndex+length-1]){
+                    count++;
+                }
+            }
+            if(cellIndex%length != 0){
+                if(liveCells[cellIndex+length+1]){
+                    count++;
+                }
+        }
         }
 
         return count;
